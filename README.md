@@ -1,5 +1,8 @@
 # BuzzBid
 
+##
+Ally Zhang, Jay Sun, Yoga Yu
+
 ## Overview
 
 BuzzBid is a simple online auction site that facilitates users to list and bid on items, much like existing online auction platforms but with a simpler approach. Users can sell items, search for listings, participate in auctions, and rate and comment on items. Administrative users have additional privileges, including auction management and viewing reports.
