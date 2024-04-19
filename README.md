@@ -1,4 +1,4 @@
-# BuzzBid
+# BuzzBid System(Auction Platform)
 
 ##
 Ally Zhang, Jay Sun, Yoga Yu
