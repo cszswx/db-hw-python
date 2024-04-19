@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div align="center">
+  {% for category, message in messages %}
+  <div class="alert alert-{{ category }}" role="alert">
+    {{ message }}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+<br />
+<h3 align="center"> BuzzBid Login</h3>
+<form method="POST" action="/login">
+  {{ form.hidden_tag() }}
+
+  <div align="center">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Login Icon" style="margin-bottom: 20px;">
+  </div>
+
+  {{ form.username.label(class="form-label")}}
+  {{ form.username(class="form-control") }}
+
+  {{ form.password.label(class="form-label")}}
+  {{ form.password(class="form-control") }}
+
+  <br/>
+  {{ form.register(class="btn btn-primary", type="button", onclick="location.href='/sign-up'") }}
+  {{ form.login(class="btn btn-primary", type="submit") }}
+</form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    setTimeout(() => {
+      const alerts = document.querySelectorAll('.alert');
+      alerts.forEach(alert => {
+        alert.style.opacity = '0';
+        setTimeout(() => alert.style.display = 'none', 600);
+      });
+    }, 4000); // 4000 ms = 4 seconds
+  });
+</script>
+{% endblock %}

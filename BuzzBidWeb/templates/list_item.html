@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}List Item{% endblock %}
+{% block content%}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div align="center">
+  {% for category, message in messages %}
+  <div class="alert alert-{{ category }}" role="alert">
+    {{ message }}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+<br />
+<h3 align="center">List Item</h3>
+
+
+<div align="center">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Login Icon" style="margin-bottom: 20px;">
+</div>
+
+<form method="POST" action="">
+  {{ form.hidden_tag() }}
+
+  {% if form.name.errors %}
+  <ul class="errors">
+    {% for error in form.name.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {{ form.name.label(class="form-label")}}
+  {{ form.name(class="form-control") }}
+
+  {{ form.description.label(class="form-label")}}
+  {{ form.description(class="form-control") }}
+
+  {{ form.category.label(class="form-label")}}
+  {{ form.category(class="form-control") }}
+
+  {{ form.condition.label(class="form-label")}}
+  {{ form.condition(class="form-control") }}
+
+
+  {{ form.returnable.label(class="form-check-label")}}
+  {{ form.returnable(class="form-check-input") }}
+
+  <br>
+  <br>
+
+  {{ form.starting_bid.label(class="form-label")}}
+  {{ form.starting_bid(class="form-control") }}
+
+  {{ form.min_sale_price.label(class="form-label")}}
+  {{ form.min_sale_price(class="form-control") }}
+
+  {{ form.get_it_now_price.label(class="form-label")}}
+  {{ form.get_it_now_price(class="form-control") }}
+
+
+  {{ form.auction_end_time.label(class="form-label")}}
+  {{ form.auction_end_time(class="form-control") }}
+  <br>
+  <br>
+  {{ form.submit(class="btn btn-primary") }}
+  <a href="{{ url_for('views.main_menu') }}" class="btn btn-secondary">Cancel</a>
+</form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    setTimeout(() => {
+      const alerts = document.querySelectorAll('.alert');
+      alerts.forEach(alert => {
+        alert.style.opacity = '0';
+        setTimeout(() => alert.style.display = 'none', 600);
+      });
+    }, 4000); // 4000 ms = 4 seconds
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,55 @@
+itemID	username_listed	name	description	start_price	condition	get_it_now_price	min_price	returns_accepted	scheduled_auction_end	category_name	cancellation_reason	cancellation_timestamp	rating_comment	num_stars	rate_timestamp
+1	pbrown	good book	good book	20.00	New	80.00	50.00	1	2024-02-02 22:48:14	Books					
+2	pbrown	good book	the best book	10.00	Good	70.00	18.63	0	2024-02-07 22:44:31	Books			very good book	4	2024-02-03 16:36:25
+3	mred	painting	good picture	100.00	Very Good	300.00	200.00	1	2024-02-03 12:36:32	Art			maybe quite useful	4	2024-02-03 13:52:21
+4	mred	plant	graet plant	500.00	Very Good	1000.00	538.16	0	2024-02-06 15:21:29	Home & Garden			this is review of another plant by pbrown	2	2024-02-05 20:54:26
+5	mred	computer1	old computer	300.00	Fair	750.00	500.00	1	2024-02-04 16:32:22	Electronics	Item is no longer available.	2024-02-03 20:09:19			
+6	jgreen	skates	for skating	250.00	New	450.00	350.00	0	2024-04-21 23:59:00	Sporting Goods					
+7	pbrown	plant	another plant	40.00	Good	70.00	60.00	1	2024-02-10 20:53:26	Other					
+8	tblue	lego toy	"very insteresting toy
+this is not very informative description"	30.00	Very Good	75.00	50.00	0	2024-04-21 23:59:00	Toys					
+9	jgreen	sculpture	expensive	1000.00	Very Good	3000.00	1058.53	0	2024-04-21 23:59:00	Art					
+10	tblue	good book	one more good book	50.00	New		58.93	1	2024-02-11 10:59:05	Books			impossible to rate	0	2024-02-11 05:16:01
+11	tblue	good book	book posted after some time	25.00	Fair	75.00	55.00	0	2024-04-21 23:59:00	Books					
+12	mred	item with really long name how would it show	this is an item with really long nme to test if it would be acceptable in all creens	100.00	New		122.68	1	2024-02-19 13:44:50	Other			and i will chamge this one 	0	2024-02-14 16:15:38
+13	tblue	Garmin GPS	Brand new last model GPS	200.00	New		350.00	1	2024-04-21 23:59:00	Electronics					
+14	jgreen	later GPS	GPS listed later	300.00	New	600.00	400.00	0	2024-04-21 23:59:00	Electronics					
+15	jgreen	still later GPS	still later GPS	400.00	New		600.00	1	2024-04-21 23:59:00	Electronics					
+16	jgreen	still still later GPS	still still later GPS	500.00	New		501.95	1	2024-02-22 09:11:06	Electronics			dfsd	5	2024-02-19 15:10:07
+17	ablack	good book	new book listed 	20.00	New	100.00	50.00	1	2024-02-18 12:43:22	Books			impossible to rate	1	2024-02-20 12:31:05
+18	ablack	plant	great gazebo	1000.00	Good	3000.00	2000.00	0	2024-04-21 23:59:00	Home & Garden					
+19	tblue	painting	pretty good painting	300.00	New	700.00	500.00	0	2024-02-18 13:33:38	Art			never saw anything like that	1	2024-02-19 04:49:15
+20	tblue	Art Albom	Albom of classic art illustrations	250.00	New	750.00	250.81	0	2024-02-27 16:38:54	Art			no so great albom	2	2024-02-22 17:05:46
+21	jgreen	Art Albom	listed by jgreen	100.00	New		200.00	0	2024-02-27 16:44:17	Art	Item is no longer available.	2024-02-26 07:27:49			
+22	tblue	ite with very long name just to see how it works	item with long name	10.00	New	50.00	30.00	1	2024-02-23 17:52:13	Other	User requested. Wrong minimum price.	2024-02-23 17:11:40			
+23	pbrown	now i want to make the item name as long as i can and even longer than anyone of the iotems I amde before	long name again	20.00	New	75.00	50.00	0	2024-04-21 23:59:00	Other					
+24	pbrown	once again item with very long item name and how it will be seen in the tables which i will be creating	again long item name	10.00	New	30.00	20.00	0	2024-04-21 23:59:00	Other					
+25	jgreen	item to buy	just to have it bought	15.00	New	35.00	25.00	1	2024-02-23 15:34:01	Other			one more useless comment	2	2024-02-24 15:20:51
+26	mred	furby	old toy	50.00	Good	70.00	60.00	0	2024-02-23 15:46:55	Toys					
+27	pbrown	Nexus	tablet	100.00	New	200.00	150.00	1	2024-02-23 15:51:26	Electronics			how would I rate it	0	2024-02-26 02:52:59
+28	pbrown	once again just to buy	just to buy	5.00	New	15.00	10.00	0	2024-02-23 15:59:57	Other					
+29	pbrown	third one to buy	third to buy	5.00	Poor	18.00	10.00	0	2024-02-23 16:04:04	Other					
+30	pbrown	fourth to sell immediately	to sell	10.00	Poor	20.00	15.00	0	2024-02-23 16:06:46	Other			never saw anything like that	3	2024-02-24 12:51:26
+31	pbrown	fifth for sale immediate	for sale immediate fifth	4.00	New	15.00	10.00	0	2024-02-23 16:16:24	Other					
+32	pbrown	sixth to sell immediate	sixth to sell immedaite	3.00	New	7.00	5.00	1	2024-02-23 16:22:33	Other			let me think what I can write	2	2024-02-23 20:10:52
+33	pbrown	eigth to check for asale immediate	eighth to sell	2.00	Poor	6.00	4.00	1	2024-02-23 16:27:02	Other					
+34	tblue	ninth to sell	ninth to sell	1.00	New	5.00	3.00	1	2024-02-23 16:32:06	Art			let me think what I can write	4	2024-02-26 07:55:45
+35	trichards	detective novel	Interesting spy novel	20.00	New	40.00	30.00	0	2024-03-03 19:41:39	Books			 something to look at	4	2024-03-06 01:50:02
+36	ablack	sculpture	ancient sculpture	100.00	Very Good		350.00	0	2024-03-06 19:36:56	Art					
+37	jgreen	my item	very simple item	1.00	Poor	10.00	5.00	1	2024-03-04 21:43:55	Other					
+38	jsmith	good book	Spanish-English	30.00	New	50.00	40.00	0	2024-04-21 23:59:00	Books					
+39	jsmith	sculpture	not so old sculpture	200.00	Very Good	600.00	400.00	0	2024-03-07 13:49:58	Art			very bad sculpture	0	2024-03-06 13:14:02
+40	ablack	something	strange thing	10.00	Good	30.00	15.00	0	2024-03-07 13:35:02	Other			never saw anything like that	1	2024-03-09 16:11:46
+41	ablack	something	even more strange thing	15.00	Fair	35.00	15.23	1	2024-03-10 13:36:47	Other			not so good something	0	2024-03-07 13:37:42
+42	porange	good book	interesting book	20.00	Very Good	50.00	35.00	1	2024-03-07 19:11:59	Books			very nice item	1	2024-03-10 03:14:48
+43	tblue	sculpture	good sculptutre	300.00	Good	750.00	500.00	0	2024-03-10 19:13:18	Art	User requested. Wrong minimum price.	2024-03-09 05:44:37			
+44	user1	Garmin GPS	This is a great GPS.	50.00	Very Good	99.00	70.00	0	2024-02-28 12:22:00	Electronics			Great GPS!	5	2024-02-27 17:00:00
+45	user1	Canon Powershot	Point and shoot!	40.00	Good	80.00	60.00	0	2024-02-29 13:55:00	Electronics			never saw anything like that	1	2024-03-01 19:12:02
+46	user2	Nikon D3	New and in box!	1500.00	New	2000.00	1589.35	0	2024-03-04 09:19:00	Electronics			never saw anything like that	4	2024-03-04 15:01:35
+47	user3	Danish Art Book	Delicious Danish Art	10.00	Very Good	15.00	10.00	1	2024-03-04 15:33:00	Art		2024-03-02 11:41:18			
+48	admin1	SQL in 10 Minutes	Learn SQL really fast!	5.00	Fair	12.00	10.00	0	2024-03-04 16:48:00	Books					
+49	admin2	SQL in 8 Minutes	Learn SQL even faster!	5.00	Good	10.00	8.00	0	2024-03-07 10:01:00	Books					
+50	user6	Pull-up Bar	Works on any door frame.	20.00	New	40.00	25.00	1	2024-03-08 22:09:00	Sporting Goods			so-so	5	2024-03-10 06:58:41
+51	jgreen	painting	round table	300.00	New	750.00	500.00	1	2024-03-11 18:17:33	Home & Garden			etetete	3	2024-03-11 18:16:52
+52	admin1	good book	very good thing	35.00	Good	75.00	36.21	0	2024-03-16 18:18:46	Other			really bvery good	4	2024-03-11 18:26:36
+53	jgreen	thingy	what is thingy?	20.00	New	50.00	30.00	0	2024-03-14 18:28:45	Art	User can no longer be reached.	2024-03-14 07:05:17			

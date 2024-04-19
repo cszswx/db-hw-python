@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% block title %}Item For Sale{% endblock %}
+
+{% block content%}
+
+<body>
+<h2>Item For Sale</h2>
+<dl class="row">
+    <dt class="col-sm-3">Item ID</dt>
+    <dd class="col-sm-9">{{ item.itemID }}</dd>
+  
+    <dt class="col-sm-3">Item Name</dt>
+    <dd class="col-sm-9"> {{ item.item_name }} </dd>
+  
+    <dt class="col-sm-3">Description</dt>
+    <dd class="col-sm-9">
+        <p class = "fst-italic text-break text-start">
+            {{ item.item_description }}
+
+        {%if is_seller %}
+        <button id="editBtn" >Edit Description</button>
+
+            <script>
+                document.getElementById("editBtn").onclick = function() {
+                    var new_description = prompt("Please enter your new description:");
+                    var itemID = {{ item.itemID| tojson }};
+                    if (new_description !== null && new_description !== undefined && new_description !== "") {
+                        window.location.href = '/edit-description?itemID='+itemID + '&new_description='+new_description;}
+                    else {
+                        alert("Please enter a valid description.");
+                    }
+                };
+            </script>
+        {%endif%}
+    </dd>
+
+    <dt class="col-sm-3">Category</dt>
+    <dd class="col-sm-9">{{ item.category_name }}</dd>
+
+    <dt class="col-sm-3">Condition</dt>
+    <dd class="col-sm-9">{{ item.item_condition }}</dd>
+  
+    <dt class="col-sm-3">Returns Accepted?</dt>
+    <dd class="col-sm-9"><input type="checkbox" onclick="return false" class="checkbox"
+        {% if item.returnable %}checked{% endif %}></dd>
+  
+    <dt class="col-sm-3">Get It Now Price</dt>
+    <dd class="col-sm-9">{{ item['get_it_now_price'] }}  <button type="button" id="get_it_now" >  Get It Now! </button></dd>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var button = document.getElementById("get_it_now");
+        var is_seller = {{ is_seller | tojson }};
+        var get_it_now_price = {{ item.get_it_now_price | tojson }};
+        var bid_empty = {{ bid_empty | tojson}};
+        button.disabled = is_seller;
+        var is_auction_end = {{ is_auction_end | tojson}};
+        if (get_it_now_price === null || get_it_now_price === undefined || is_auction_end) {
+            button.disabled = true;
+        }
+        button.onclick = function() {
+            var itemID = {{ item.itemID }};
+            window.location.href = '/get-it-now?itemID='+itemID +'&get_it_now_price='+get_it_now_price;
+        };
+      });
+</script>
+
+    <dt class="col-sm-3">Auction Ended</dt>
+    <dd class="col-sm-9">{{ item['auction_end_time'] }}</dd>
+</dl>
+
+{% set itemID = item['itemID'] %}
+{% set item_name = item['item_name'] %}
+{% set is_auction_end = is_auction_end %}
+{% set redir_view = redir_view %}
+
+{% include 'view_ratings_button.html' %}
+
+<br/>
+<div class="table-responsive-sm">
+    <table class="table table-bordered table-striped caption-top table-hover">
+        <caption style="text-align: center;">Bid History</caption>
+        <thead>
+          <tr>
+            <th scope="col">Bid Amount</th>
+            <th scope="col">Time Of Bid</th>
+            <th scope="col">Username</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if not df_bid_history.empty %}
+                {% for i, row in df_bid_history.iterrows() %}
+                    <tr>
+                        <th scope="row">{{ row['bid_amount']  }}</th>
+                        <td> {{ row['time_of_bid']}}</td>
+                        <td> {{ row['username']}}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+
+        </tbody>
+
+    </table>
+</div>
+
+
+    <label for="your_bid">Your Bid   $</label>
+    <input type="number" id="your_bid" name="your_bid" value={{request.form.your_bid}}><br>
+    <p>(minimum bid $ {{  min_bid }})</p>
+
+<button type="button" onclick="location.href='/search-results?keyword={{ keyword }}&category={{ category }}&min_price={{ min_price }}&max_price={{ max_price }}&condition={{ condition }}';" >Back to Search</button>
+{% if is_admin %}
+    <button type="button" id="cancel">Cancel This Item</button>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var button = document.getElementById("cancel");
+            var is_auction_end = {{ is_auction_end | tojson }};
+            button.disabled = is_auction_end;
+            var itemID = {{ item.itemID }};
+            button.onclick = function() {
+                var reason = prompt("Please enter your reason for cancellation:");
+                if (reason !== null){
+                    window.location.href = '/cancel-item?itemID='+itemID + '&reason='+reason;}
+            };
+        });
+
+    </script>
+{% endif %}
+
+
+<button type="button" id="bid" >Bid On This Item</button>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var button = document.getElementById("bid");
+        var is_seller = {{ is_seller | tojson }};
+        var get_it_now_price = {{ item.get_it_now_price | tojson}};
+        var bid_empty = {{ bid_empty | tojson}};
+        var is_auction_end = {{ is_auction_end | tojson}};
+        if (is_auction_end || is_seller) {
+            button.disabled = true;
+        }
+        button.onclick = function() {
+            var itemID = {{ item.itemID }};
+            var min_bid = {{ min_bid }};
+            var your_bid = document.getElementById("your_bid").value;
+            if (parseFloat(your_bid) >= parseFloat(get_it_now_price)) {
+                alert("Please use the Get It Now button to purchase this item.");
+                return;
+            }
+            if (parseFloat(your_bid) >= parseFloat(min_bid)) {
+                window.location.href = '/bid-on-item?itemID='+itemID+'&bid='+your_bid;
+            }
+            else {
+                alert("Your bid must be at least the minimum bid.");
+                return;
+            }
+        };
+    });
+</script>
+</body>
+  {% endblock %}

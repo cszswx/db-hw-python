@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %} Buzzbid Main Menu {% endblock %}
+
+{% block content %}
+<div align="center">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Login Icon" style="margin-bottom: 20px;">
+</div>
+
+<h3 style="text-align: center; font-size: 18px;"> Welcome, {{name}} ! </h3>
+
+{% if is_admin %}
+    <h3 style="text-align: center; font-size: 18px;"> Adminitrative position: {{ admin_position }} </h3>
+    <br> <!-- Added line break here -->
+    <div class="row">
+        <!-- First Column -->
+        <div class="col">
+            <h4>Auction Options</h4>
+            <div class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/search-items">Search For Items</a>
+                </div>
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/list-items">List Items</a>
+                </div>
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/auction-results">View Auction Results</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Column -->
+        <div class="col">
+            <h4>Reports</h4>
+            <div class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/category-report">Category Report</a>
+                </div>
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/user-report">User Report</a>
+                </div>
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/top-rated-items-report">Top Rated Items</a>
+                </div>
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/auction-statistics-report">Auction Statistics</a>
+                </div>
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/canceled-auction-details-report">Canceled Auction Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="d-flex flex-column align-items-center">
+        <h4>Auction Options</h4>
+        <div class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/search-items">Search For Items</a>
+            </div>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/list-items">List Items</a>
+            </div>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/auction-results">View Auction Results</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

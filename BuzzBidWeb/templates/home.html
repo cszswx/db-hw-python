@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content%}
+{{ content }}
+<br/>
+<h3 align="center"> Welcome to BuzzBid!</h3>
+<div align="center">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Login Icon" style="margin-bottom: 20px;">
+</div>
+{% endblock %}

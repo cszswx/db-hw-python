@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Search Results{% endblock %}
+
+{% block content%}
+
+<!--DOCTYPE html-->
+<html lang="en">
+<head>
+    <title>Search Results</title>
+</head>
+<style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+<body>
+
+    <h2>Search Results</h2>
+    {% if items %}
+    <table>
+            <tr>
+                <th>ID</th>
+                <th>Item Name</th>
+                <th>Current Bid</th>
+                <th>High Bidder</th>
+                <th>Get It Now Price</th>
+                <th>Auction Ends</th>
+                <!-- Add more headers as needed -->
+            </tr>
+            {% for item in items %}
+            <tr>
+                <!-- Assuming 'item' has an 'id' and a detail view route named 'item_detail' -->
+                <td>{{ item.itemID }}</td>
+                <td><a href="{{ url_for('item_description_view.item_description', itemID=item.itemID, keyword=keyword, category=category,
+                                       min_price=min_price, max_price=max_price, condition=condition) }}">{{ item.item_name }}</a></td>
+                <td>
+                    {% if item.bid_amount %}
+                        ${{ item.bid_amount }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if item.username %}
+                        {{ item.username }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if item.get_it_now_price %}
+                        ${{ item.get_it_now_price }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>{{ item.auction_end_time }}</td>
+                <!-- Display more item details as needed -->
+            </tr>
+            {% endfor %}
+    </table>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+    <button type="button" onclick="location.href='/search-items';" >Back to Search</button>
+
+
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Search Items{% endblock %}
+
+{% block content%}
+
+<!--DOCTYPE html-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2>Search Items</h2>
+<form action="/search-filters" method="post">
+        <label for="keyword">Keyword:</label>
+        <input type="text" id="keyword" name="keyword" value="{{request.form.keyword}}"><br><br>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value=>All Categories</option>
+            {% for category in categories %}
+                <option value="{{ category['category_name'] }}">{{ 'selected' if request.form.category == category['category_name'] else ''}}{{ category['category_name'] }}</option>
+            {% endfor %}
+            <!-- Add other categories as needed -->
+        </select><br><br>
+
+        <label for="min_price">Minimum Price:</label>
+        <input type="number" id="min_price" name="min_price" step="0.01" value="{{request.form.min_price}}"><br><br>
+
+        <label for="max_price">Maximum Price:</label>
+        <input type="number" id="max_price" name="max_price" step="0.01" value="{{request.form.max_price}}"><br><br>
+
+        <label for="condition">Condition at least:</label>
+        <select id="condition" name="condition">
+            <option value=>All Condition</option>
+            <option value="New">New</option>
+            <option value="Very Good">Very Good</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+            <option value="Poor">Poor</option>
+        </select><br><br>
+
+        <button type="submit">Search</button>
+        <button type="button" onclick="location.href='/main_menu';" >Cancel</button>
+    </form>
+</body>
+</html>
+
+{% endblock %}

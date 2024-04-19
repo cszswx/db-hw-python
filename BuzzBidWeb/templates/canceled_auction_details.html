@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Canceled Auction Details{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+  <style>
+    .bg-purple {
+        background-color: #5118ba!important;
+    }
+    .report-table {
+        width: auto;       /* Allow table width to adjust to content */
+        margin: 0 auto;    /* Center the table horizontally */
+        border-collapse: collapse; /* Collapse borders between cells */
+    }
+    .report-table th, .report-table td {
+        border: 1px solid #ddd; /* Lighter border for the table cells */
+        padding: 8px; /* Padding inside cells */
+        text-align: left; /* Align text to the left */
+        white-space: nowrap; /* Prevent wrapping of text in cells */
+    }
+    .report-table th {
+        background-color: #666; /* Dark background for headers */
+        color: white; /* White text color for headers */
+    }
+    .report-table tbody tr:nth-child(odd) {
+        background-color: #f9f9f9; /* Zebra striping for rows */
+    }
+    /* Center button styling */
+    .center-button {
+        display: flex;
+        justify-content: center; /* Align button in the center */
+        margin-top: 20px; /* Space from the table or last content */
+    }
+  </style>
+  <div class="d-grid gap-2 p-3 bg-purple rounded-3">
+      <h1 style="text-align: center;" class="text-white">Canceled Auction Details</h1>
+  </div>
+  <br/>
+  <div style="overflow-x:auto;"> <!-- Container to handle overflow and scrolling -->
+    <table class="report-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Listed by</th>
+                <th>Canceled Date</th>
+                <th>Reason</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for auction in canceled_auction %}
+                <tr>
+                    <td>{{ auction['ID'] }}</td>
+                    <td>{{ auction['Listed by'] }}</td>
+                    <td>{{ auction['Canceled Date'].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>{{ auction['Reason'] if auction['Reason'] else '-' }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">No canceled auction to display.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+    
+<!-- Center the Done button -->
+  <div class="center-button">
+    <button type="button" onclick="location.href='/main_menu';" class="btn btn-secondary">Done</button>
+  </div>
+
+</div>
+{% endblock %}

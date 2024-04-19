@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}Item Result{% endblock %}
+
+{% block content%}
+<br/>
+<style>
+    .bg-purple {
+        background-color: #5118ba!important;
+    }
+    .icon {
+        width : 30px;
+        height : 30px;
+    }
+
+</style>
+
+<script>
+    function highlightRow() {
+        var table = document.getElementById("myTab");
+        var firstRow = table.rows[1]
+
+        if ("{{ has_winner }}" == "True") {
+            firstRow.classList.add("table-success");
+        } else if("{{ cancelled }}" == "True") {
+            firstRow.classList.add("table-danger");
+        } else {
+            firstRow.classList.add("table-warning");
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        highlightRow();
+    });
+    </script>
+<div class="d-grid gap-2 p-3 bg-purple rounded-3">
+    <h1 style="text-align: center;" class="text-white">View Item Results</h1>
+</div>
+<br/>
+<dl class="row">
+    <dt class="col-sm-3">Item ID</dt>
+    <dd class="col-sm-9">{{ myItem['itemID'] }}</dd>
+  
+    <dt class="col-sm-3">Item Name</dt>
+    <dd class="col-sm-9"> {{ myItem['item_name'] }} </dd>
+  
+    <dt class="col-sm-3">Description</dt>
+    <dd class="col-sm-9">
+        <p class = "fst-italic text-break text-start">
+            {{ myItem['item_description'] }}
+        </p>
+    </dd>
+
+    <dt class="col-sm-3">Category</dt>
+    <dd class="col-sm-9">{{ myItem['category_name'] }}</dd>
+
+    <dt class="col-sm-3">Condition</dt>
+    <dd class="col-sm-9">{{ myItem['item_condition'] }}</dd>
+  
+    <dt class="col-sm-3">Returns Accepted?</dt>
+    {% if myItem['returnable'] %}
+        <!-- <dd class="col-sm-9">Yes</dd> -->
+        <dd class="col-sm-9">  
+            <img src="{{ url_for('static', filename='images/check.png') }}" class = "icon">
+        </dd>
+
+    {%else%}
+        <dd class="col-sm-9">      
+            <img src="{{ url_for('static', filename='images/no.png') }}" class = "icon">
+        </dd>
+    {%endif%}
+    
+  
+    <dt class="col-sm-3">Get It Now Price</dt>
+    <dd class="col-sm-9">{{ myItem['get_it_now_price'] }}</dd>
+
+    <dt class="col-sm-3">Auction Ended</dt>
+    <dd class="col-sm-9">{{ myItem['auction_end_time'] }}</dd>
+
+</dl>
+<br/>
+
+{% set itemID = myItem['itemID'] %}
+{% set item_name = myItem['item_name'] %}
+{% set winner = winner_username %}
+{% set winnerID = winnerID %}
+{% set redir_view = redir_view %}
+{% include 'view_ratings_button.html' %}
+
+<br/>
+<div class="table-responsive-sm">
+    <table class="table table-bordered table-striped caption-top table-hover" id = "myTab">
+        <caption style="text-align: center;">Bid History</caption>
+        <thead>
+          <tr>
+            <th scope="col">Bid Amount</th>
+            <th scope="col">Time Of Bid</th>
+            <th scope="col">Username</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if df_cancel %}
+                {% for each in df_cancel %}
+                    <tr class="table-danger">
+                        <th scope="row">Cancelled</th>
+                        <td> {{ each['cancel_date_time']}}</td>
+                        <td>Administrator</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+
+            {% if df_bid_history %}
+                {% for each in df_bid_history %}
+                    <tr>
+                        <th scope="row">{{ each['bid_amount'] }}</th>
+                        <td> {{ each['time_of_bid'] }}</td>
+                        <td> {{ each['username']}}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+    
+        </tbody>
+    </table>
+</div>
+<br/>
+
+<form method="POST" action = "{{ url_for ('views.acution_results') }}" style="text-align: center;">
+    <button type="submit" class="btn btn-secondary" type="button">Back</button>   
+</form>
+
+  {% endblock %}

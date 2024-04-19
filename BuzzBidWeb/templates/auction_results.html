@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Auction Results{% endblock %}
+
+{% block content%}
+<br/>
+
+<style>
+  .bg-purple {
+      background-color: #5118ba!important;
+  }
+</style>
+<div class="d-grid gap-2 p-3 bg-purple rounded-3">
+  <h1 style="text-align: center;" class="text-white">View Auction Results</h1>
+</div>
+
+<br/>
+<br/>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Item #</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Sale Price</th>
+        <th scope="col">Winner</th>
+        <th scope="col">Auction Ended</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for each in auction_results %}
+            <tr>
+                <th scope="row">{{ each['itemID']}}</th>
+                <td> 
+                    <form action = "{{ url_for ('views.item_results') }}" method = "post">
+                    <input type = "hidden" name = "itemID" value="{{ each['itemID'] }}">
+                    <input type = "hidden" name = "item_name" value="{{ each['item_name'] }}">
+                    <input type = "hidden" name = "winner" value="{{ each['winner'] }}">
+                    <button type = "submit" class="btn btn-link">{{ each['item_name'] }}</button>
+                    </form>
+                </td> 
+                
+                <td> {{ each['winner_bid_amount'] }}</td>
+                <td> {{ each['winner']}}</td>
+                <td> {{ each['end_time']}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+  {% endblock %}

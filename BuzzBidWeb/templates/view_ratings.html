@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}View Ratings{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+  <style>
+    .bg-purple {
+        background-color: #5118ba!important;
+    }
+    .star-rating .icon {
+        color: #B8860B; /* Dark gold color */
+    }
+  </style>
+  <div class="d-grid gap-2 p-3 bg-purple rounded-3">
+      <h1 style="text-align: center;" class="text-white">View Ratings</h1>
+  </div>
+  <br/>
+
+  {% if ratings_data %}
+    <div class="rating-header">
+      <dl class="row">
+        <dt class="col-sm-3">Item ID</dt>
+        <dd class="col-sm-9">{{ ratings_data.itemID }}</dd>
+
+        <dt class="col-sm-3">Item Name</dt>
+        <dd class="col-sm-9">{{ ratings_data.item_name }}</dd>
+
+        <dt class="col-sm-3">Average Rating</dt>
+        <dd class="col-sm-9">{{ ratings_data.average_rating }}</dd>
+      </dl>
+    </div>
+
+    {% if individual_comments %}
+      {% for comment in individual_comments %}
+        <div class="rating mb-3">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <strong>Rated by:</strong> {{ comment.username }}<br>
+              <strong>Date:</strong> {{ comment.rate_date_time }}<br>
+              <p><strong>Comment:</strong> {{ comment.rate_comment }}</p>
+            </div>
+            <div>
+              <div class="star-rating">
+                {% for star in range(comment.number_of_star) %}
+                  <span class="icon">★</span>
+                {% endfor %}
+                {% for star in range(5 - comment.number_of_star) %}
+                  <span class="icon">☆</span>
+                {% endfor %}
+              </div>
+              {% if is_admin or session['userID'] == comment.userID %}
+                <form action="{{ url_for('views.view_ratings') }}" method="post" style="display: inline-block;">
+                  <input type="hidden" name="action_type" value="delete_rating">
+                  <input type="hidden" name="comment_userID" value="{{ comment.userID }}">
+                  <input type="hidden" name="comment_itemID" value="{{ comment.itemID }}">
+                  <input type="hidden" name="rate_date_time" value="{{ comment.rate_date_time }}">
+                  <input type="hidden" name="itemID" value="{{ ratings_data.itemID }}">
+                  <input type="hidden" name="item_name" value="{{ ratings_data.item_name }}">
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% else %}
+  <p>No ratings data available for this item.</p>
+  {% endif %}
+  
+  {% if include_rating %}
+    {% set form = submit_rate_form %}  
+    {% include 'rate_items.html' %}
+  {% endif %}
+  <br>
+  <br>
+  
+  <!-- Need to upate: Redirect to Item Description Page  'views.item_results'-->
+  <form method="POST" action = "{{ url_for (redir_view, itemID = itemID) }}" style="text-align: center;">
+      <input type = "hidden" name = "itemID" value="{{ itemID }}">
+      <button type="submit" class="btn btn-secondary" type="button">Close</button>
+  </form>
+
+</div>
+{% endblock %}

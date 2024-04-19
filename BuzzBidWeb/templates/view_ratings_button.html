@@ -1,0 +1,14 @@
+<form method="POST" action = "{{ url_for ('views.view_ratings') }}">
+    <input type = "hidden" name = "form_name" value="view_ratings">
+    <input type = "hidden" name = "itemID" value="{{ itemID }}">
+    <input type = "hidden" name = "item_name" value="{{ item_name }}">
+    <input type = "hidden" name = "is_auction_end" value="{{ is_auction_end }}">
+    <input type = "hidden" name = "winner" value="{{ winner }}">
+    <input type = "hidden" name = "winnerID" value="{{ winnerID }}">
+    {% if is_auction_end %}
+        <input type = "hidden" name = "redir_view" value="view.item_results">
+    {% else %}
+        <input type = "hidden" name = "redir_view" value="item_description_view.item_description">
+    {% endif %}
+    <button type="submit" class="btn btn-link" type="button">View Ratings</button>
+</form>
