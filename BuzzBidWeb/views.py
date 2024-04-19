@@ -9,9 +9,7 @@ from .forms import SubmitRatingForm, ListItemForm
 from datetime import datetime
 from datetime import timedelta
 
-
 views = Blueprint("views", __name__)
-
 
 # whenever go to this url, it will run function home
 @views.route("/")
@@ -38,7 +36,6 @@ def main_menu():
         admin_position=admin_position,
         userID=userID,
     )
-
 
 @views.route("/list-items", methods=["GET", "POST"])
 @login_required
@@ -94,18 +91,6 @@ def list_items():
                 )
 
     return render_template("list_item.html", form=form)
-
-
-# @views.route("/view-itemss")
-# @login_required
-# def view_items():
-#     """
-#     yoga
-#     To be implemented
-
-#     redirct from search items, etc
-#     """
-#     return render_template("index.html", header="View Items")
 
 
 @views.route("/view-ratings", methods=["GET", "POST"])
@@ -218,7 +203,6 @@ def view_ratings():
         redir_view = redir_view
     )
 
-
 @views.route("/auction-results", methods=['GET', 'POST'])
 @login_required
 def acution_results():
@@ -268,18 +252,6 @@ def item_results():
         winnerID=winnerID,
         redir_view = 'views.item_results'
     )
-
-
-# @views.route("/cancel-items")
-# @login_required
-# def cancel_items():
-#     """
-#     yoga
-#     To be implemented
-#     """
-
-#     return render_template("index.html", header="Cancel Items")
-
 
 @views.route("/category-report")
 @login_required
